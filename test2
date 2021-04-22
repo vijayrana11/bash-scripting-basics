@@ -1,0 +1,6 @@
+#! /bin/bash
+path=/home/ec2-user/test1
+while IFS= read -r line
+do 
+echo "echo $line[1]"
+done < "$path"
