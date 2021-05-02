@@ -11,9 +11,13 @@ if [[ $var3 > 18%  &&  $var4 == / ]]
 then 
 sudo du -s /* |sort -rn>acd
 var2=$(sudo cat acd | head -n 3| wc -l)
+var5=1000000
 for((var1=1;var1<var2;var1++))
 do
-sudo cat acd|head -n 3|sed -n "$var1"p |awk '{if($1>1000000) print$1 "KB is consumed by  " $2 " Partition"}' 	
+var4=$(sudo cat acd|head -n 3|sed -n "$var1"p |awk '{if($1>1000000) print$1}') 	
+var7=$(sudo cat acd|head -n 3|sed -n "$var1"p |awk '{if($1>1000000) print$2}')
+var6=$(echo "scale=1; $var4/$var5" | bc -l)
+echo "$var7 is consuming $var6 GB of disk"
 done
 fi
 done
